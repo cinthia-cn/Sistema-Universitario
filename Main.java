@@ -1,30 +1,78 @@
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) {
 
+        // =====================
+        // CUENTA CORRIENTE
+        // =====================
+
         CuentaCorriente cc =
-                new CuentaCorriente("CC001", 5000);
+                new CuentaCorriente(
+                        "CC001",
+                        5000
+                );
+
+        Trabajador trabajador =
+                new Trabajador(
+                        LocalDate.of(2020, 1, 15),
+                        12000,
+                        "Administrador",
+                        "Juan Perez",
+                        LocalDate.of(1985, 5, 20),
+                        "Puebla",
+                        cc
+                );
+
+        System.out.println("=== TRABAJADOR ===");
+        System.out.println(trabajador);
+
+        trabajador.getCuenta().depositar(1000);
+        trabajador.getCuenta().retirar(500);
+        trabajador.getCuenta().girarCheque(300);
+        trabajador.getCuenta().cobrarComision();
+
+        System.out.println(
+                "Saldo actual: $" +
+                trabajador.getCuenta().consultarSaldo()
+        );
+
+        // =====================
+        // CUENTA AHORRO
+        // =====================
 
         CuentaAhorro ca =
-                new CuentaAhorro("CA001", 10000, 20000);
+                new CuentaAhorro(
+                        "CA001",
+                        10000,
+                        15000
+                );
 
-        // Cuenta Corriente
-        cc.depositar(1000);
-        cc.retirar(500);
-        cc.girarCheque(300);
-        cc.cobrarComision();
+        Estudiante estudiante =
+                new Estudiante(
+                        "A001",
+                        9.5,
+                        LocalDate.of(2023, 8, 1),
+                        "Maria Lopez",
+                        LocalDate.of(2004, 3, 10),
+                        "Puebla",
+                        ca
+                );
 
-        System.out.println(cc);
-        System.out.println("Saldo: " + cc.consultarSaldo());
+        System.out.println("\n=== ESTUDIANTE ===");
+        System.out.println(estudiante);
 
-        System.out.println();
+        estudiante.getCuenta().depositar(2000);
 
-        // Cuenta Ahorro
-        ca.depositar(2000);
-        ca.retirar(1000);
+        System.out.println(
+                "Intereses generados: $" +
+                estudiante.getCuenta().calcularIntereses()
+        );
 
-        System.out.println(ca);
-        System.out.println("Interés: $" +
-                ca.calcularIntereses());
+        System.out.println(
+                "Saldo actual: $" +
+                estudiante.getCuenta().consultarSaldo()
+        );
     }
 }
