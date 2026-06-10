@@ -1,3 +1,4 @@
+package banco;
 public class CuentaAhorro extends CuentaBancaria {
 
     private double montoLimite;

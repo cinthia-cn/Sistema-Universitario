@@ -1,3 +1,4 @@
+package banco;
 public interface Transaccionable {
 
     void depositar(double monto);

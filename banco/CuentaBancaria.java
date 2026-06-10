@@ -1,3 +1,4 @@
+package banco;
 public class CuentaBancaria implements Transaccionable {
 
     protected double saldo;
