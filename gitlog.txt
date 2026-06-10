@@ -1,41 +1,8 @@
+0791758 Borre archivos errones.. La Asociacion ya esta terminada
+92e4996 Termine la agregacion y paquetes
 d4ff944 Agregamos al Main las asociaciones
 6bcaf24 Creamos el Main
 8103957 Creamos Cuenta ahorro
 bc5ad4a Creamos Cuenta corriente con la herencia de cuenta bancaria
 f964494 Cremoas cuenta bancaria implementando la interfaz
 a6cbcc1 Creamos la interfaz de TRANSACCIONABLE
-commit d4ff944c8130e6801d462183054a12ff5fb6631f
-Author: Cinthia Carreon <cbi2243051516@izt.uam.mx>
-Date:   Wed Jun 10 01:27:32 2026 +0000
-
-    Agregamos al Main las asociaciones
-
-commit 6bcaf2489f67ae1ac47ee052de85dd996490fa27
-Author: Cinthia Carreon <cbi2243051516@izt.uam.mx>
-Date:   Mon Jun 8 21:27:38 2026 +0000
-
-    Creamos el Main
-
-commit 810395788566568e61ccd85210d8796ad93a284d
-Author: Cinthia Carreon <cbi2243051516@izt.uam.mx>
-Date:   Mon Jun 8 19:01:36 2026 +0000
-
-    Creamos Cuenta ahorro
-
-commit bc5ad4a8448ab7a05a537a8a13d9d1db63853e48
-Author: Cinthia Carreon <cbi2243051516@izt.uam.mx>
-Date:   Mon Jun 8 18:58:49 2026 +0000
-
-    Creamos Cuenta corriente con la herencia de cuenta bancaria
-
-commit f9644943f899fc58ad33a09961fd7f270379ccd2
-Author: Cinthia Carreon <cbi2243051516@izt.uam.mx>
-Date:   Mon Jun 8 18:55:01 2026 +0000
-
-    Cremoas cuenta bancaria implementando la interfaz
-
-commit a6cbcc18b31b72d3f0a5cb88179c351db43ee736
-Author: Cinthia Carreon <cbi2243051516@izt.uam.mx>
-Date:   Mon Jun 8 18:49:59 2026 +0000
-
-    Creamos la interfaz de TRANSACCIONABLE
