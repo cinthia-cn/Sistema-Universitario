@@ -10,6 +10,8 @@ public class Trabajador extends persona {
 //ATRIBUTOS
 private CuentaCorriente cuenta; //Atributo de la nueva practica
 
+private String identificador; // Agregamos atributo faltante para mejorar la presentacion de busqueda recursiva
+
 private LocalDate fechaIngreso;
 private double salario;
 private String puesto;
@@ -17,15 +19,18 @@ private String puesto;
 //CONSTRUCTORES
 public Trabajador (LocalDate fechaIngreso, 
 		double salario, 
+		String identificador,
 		String puesto, 
 		String nombre, 
 		LocalDate fechaNacimiento, 
 		String direccion,CuentaCorriente cuenta){
         super(nombre, fechaNacimiento, direccion);
-        this.fechaIngreso = fechaIngreso;
+	this.identificador = identificador;        
+	this.fechaIngreso = fechaIngreso;
         this.puesto = puesto;
         this.salario = salario;
 	this.cuenta= cuenta;
+	
     }
 
 public Trabajador() {
@@ -35,7 +40,9 @@ public Trabajador() {
     this.fechaIngreso = LocalDate.now();
     this.salario = 0;
     this.puesto = "";
+    this.identificador = "";
 }
+
 
 //Setter y getter de CUENTA CORRIENTE
 public CuentaCorriente getCuenta(){
@@ -46,6 +53,13 @@ public void setCuenta(CuentaCorriente cuenta){
 	this.cuenta=cuenta;
 }
 
+//Setter y getter de IDENTIFICADOR
+public String getIdentificador(){
+	return identificador;
+}
+public void setIdentificador(String identificador){
+	this.identificador = identificador;
+}
 //Setter y getter de FECHA  DE INGRESO
 public void setFechaIngreso(LocalDate fechaIngreso){
         this.fechaIngreso = fechaIngreso;
@@ -90,7 +104,8 @@ public String toString(){
 	"\nFecha de ingreso: " + fechaIngreso +
 	"\nSalario: " +salario +
 	"\nPuesto: " + puesto +
-	"\nCuenta: " + cuenta;
+	"\nCuenta: " + cuenta +
+	"\nIdentificador:" +identificador;
 }
 
 }
