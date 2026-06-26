@@ -18,9 +18,7 @@ public class CuentaCorriente extends CuentaBancaria {
 
     @Override
     public String toString() {
-        return "CuentaCorriente{" +
-                "numeroCuenta='" + numeroCuenta + '\'' +
-                ", saldo=" + saldo +
-                '}';
+        return "CuentaCorriente" +
+		"\n" + super.toString();
     }
 }
