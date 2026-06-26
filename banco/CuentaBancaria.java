@@ -1,21 +1,36 @@
 package banco;
+
 public class CuentaBancaria implements Transaccionable {
 
+// ATRIBUTOS
     protected double saldo;
     protected String numeroCuenta;
+
+// CONSTRUCTOR 
 
     public CuentaBancaria(String numeroCuenta, double saldo) {
         this.numeroCuenta = numeroCuenta;
         this.saldo = saldo;
     }
+// GETTERS 
+puublic String getNumeroCuenta(){
+	return numeroCuenta;
+}
 
-    public double consultarSaldo() {
-        return saldo;
+public double getSaldo(){
+	return saldo;
+}
+
+//SETTERS
+public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
     }
 
-    public String obtenerNumero() {
-        return numeroCuenta;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
+
+// METODO
 
     @Override
     public void depositar(double monto) {
@@ -33,9 +48,8 @@ public class CuentaBancaria implements Transaccionable {
 
     @Override
     public String toString() {
-        return "CuentaBancaria{" +
-                "numeroCuenta='" + numeroCuenta + '\'' +
-                ", saldo=" + saldo +
-                '}';
+        return "CuentaBancaria" +
+		"\nNumero de cuenta: "+ numeroCuenta+
+		"\nSaldo: "+ saldo;
     }
 }
