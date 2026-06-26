@@ -10,17 +10,27 @@ public class CuentaAhorro extends CuentaBancaria {
         this.montoLimite = montoLimite;
     }
 
+// GETTERS
+ public double getMontoLimite() {
+        return montoLimite;
+    }
+
+// SETTER
+
+    public void setMontoLimite(double montoLimite) {
+        this.montoLimite = montoLimite;
+    }
+
     public double calcularIntereses() {
-        double tasa = 0.05; // 5%
-        return saldo * tasa;
+
+        return saldo * 0.05;
+
     }
 
     @Override
     public String toString() {
-        return "CuentaAhorro{" +
-                "numeroCuenta='" + numeroCuenta + '\'' +
-                ", saldo=" + saldo +
-                ", montoLimite=" + montoLimite +
-                '}';
+        return "CuentaAhorro" + 
+	"\n"+ super.toString() +
+	"\nMonto limite: $" + montoLimite
     }
 }
