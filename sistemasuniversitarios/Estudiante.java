@@ -3,39 +3,53 @@ import banco.CuentaAhorro;
 
 import java.time.LocalDate;
 
-public class Estudiante extends persona {
+public class Estudiante extends Persona {
 
 // ATRIBUTOS
 
-    private CuentaAhorro cuenta; //Asociamos cuenta ahorro a Estudiante
+// AQUI APLICAMOS LO MISMO QUE EN TRABAJADOR
+// DONDE UN ESTUDIANTE PUEDE TENER VARIAS CUENTAS DE AHORRO
+// POR LO TANTO CORREGI DE ASOSIACION A AGREGACION
+// Y AGREGAMOS ARREGLO A CUENTA DE AHORRO
+
+	private static final int MAX_CUENTAS = 3;
+	private CuentaAhorro[] cuentas;
+	private int totalCuentas;
+
     private String matricula;
     private double promedio;
     private LocalDate fechaIngreso;
 
 // CONSTRUCTOR
+
     public Estudiante(String matricula,
                       double promedio,
                       LocalDate fechaIngreso,
                       String nombre,
                       LocalDate fechaNacimiento,
-                      String direccion, CuentaAhorro cuenta) {//
+                      String direccion) {
 
         super(nombre, fechaNacimiento, direccion);
 
         this.matricula = matricula;
         this.promedio = promedio;
         this.fechaIngreso = fechaIngreso;
-	this.cuenta = cuenta; //
+	
+	cuentas = new CuentaAhorro[MAX_CUENTAS];
+	totalCuentas = 0;
     }
 
+// CONSTRUCTOR VACIO
     public Estudiante() {
 
-        super("", LocalDate.now(), "");
+        super();
 
         this.matricula = "";
         this.promedio = 0;
         this.fechaIngreso = LocalDate.now();
-	this.cuenta = null;
+	
+	cuentas = new CuentaAhorro[MAX_CUENTAS];
+	totalCuentas = 0;
     }
 
 // GETTERS
@@ -50,10 +64,16 @@ public class Estudiante extends persona {
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
-    public  CuentaAhorro getCuenta(){
-	return cuenta;                             //Agregamos getter de cuenta ahorro asociada a estudiante
+    public  CuentaAhorro[] getCuentas(){
+	return cuentas;
 }
+
+   public int getTotalCuentas(){
+	return totalCuentas;
+}
+
 // SETTERS
+
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
@@ -65,9 +85,50 @@ public class Estudiante extends persona {
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
-    public void setCuenta(CuentaAhorro cuenta){
-	this.cuenta = cuenta;                               //Agregamos setter de cuenta ahorro asociada a estudiante
-}
+    
+// METODO DE CUENTA AHORRO CUENTAS
+
+ public boolean agregarCuenta(CuentaAhorro cuenta) {
+
+        if (totalCuentas < MAX_CUENTAS) {
+
+            cuentas[totalCuentas] = cuenta;
+            totalCuentas++;
+
+            return true;
+        }
+
+        return false;
+    }
+  public CuentaAhorro buscarCuenta(String numeroCuenta) {
+
+        for (int i = 0; i < totalCuentas; i++) {
+
+            if (cuentas[i].obtenerNumero().equals(numeroCuenta)) {
+                return cuentas[i];
+            }
+
+        }
+
+        return null;
+    }
+
+    public void mostrarCuentas() {
+
+        if (totalCuentas == 0) {	
+	System.out.println("No tiene cuentas registradas.");
+            return;
+
+        }
+
+        for (int i = 0; i < totalCuentas; i++) {
+
+            System.out.println(cuentas[i]);
+
+        }
+
+    }
+
 // METODO INSCRIBIR MATERIAS
     public void inscribirMateria(String materia) {
 
@@ -101,6 +162,6 @@ public class Estudiante extends persona {
                 "\nMatricula: " + matricula +
                 "\nPromedio: " + promedio +
                 "\nFecha de ingreso: " + fechaIngreso + 
-		"\nCuenta: " + cuenta;
+		"\nTotal de cuentas: " + totalcuentas;
     }
 }
