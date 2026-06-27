@@ -1,4 +1,7 @@
 package banco;
+import banco.CuentaCorriente;
+import banco.CuentaAhorro;
+
 public class CuentaCorriente extends CuentaBancaria {
 
     public CuentaCorriente(String numeroCuenta, double saldo) {
@@ -19,6 +22,6 @@ public class CuentaCorriente extends CuentaBancaria {
     @Override
     public String toString() {
         return "CuentaCorriente" +
-		"\n" + super.toString();
+                "\n" + super.toString();
     }
 }
