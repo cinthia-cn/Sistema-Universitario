@@ -4,7 +4,7 @@ import java.time.LocalDate;
 public class Pas {
 
 //ATRIBUTOS
-    private Trabajador[] t = new Trabajador[3];
+    private Trabajador[] t = new Trabajador[3];// creamos un objeto de un arreglo de 3
     private String area;
     private int nivel;
     private String turno;
@@ -34,19 +34,14 @@ public class Pas {
         this.turno = turno;
     }
 
-    // Constructor con área
-    public Pas(String area) {
+//CONSTRUCTOR DE AREA
+public Pas(String area, int nivel, String turno) {
+    this.area = area;
+    this.nivel = nivel;
+    this.turno = turno; 
+}
 
-        this.area = area;
-        this.nivel = 0;
-        this.turno = "";
-
-        t[0] = null;
-        t[1] = null;
-        t[2] = null;
-    }
-
-    // Constructor vacío
+// CONSTRUCTOR VACIO
     public Pas() {
 
         this.area = "";
@@ -54,7 +49,7 @@ public class Pas {
         this.turno = "";
     }
 
-    // Getters
+// GETTERS
     public String getArea() {
         return area;
     }
@@ -67,7 +62,7 @@ public class Pas {
         return turno;
     }
 
-    // Setters
+// SETTERS
     public void setArea(String area) {
         this.area = area;
     }
@@ -80,9 +75,11 @@ public class Pas {
         this.turno = turno;
     }
 
-// Agregamos BUSQUEDA RECURSIVA
-// Buscamos TRABAJADOR dentro del arreglo
-//Usamos el metodo Equals
+/**
+AQUI TENEMOS UNA BUSQUEDA RECURSIVA PARA BUSCAR TRABAJADOR
+LO QUE HACE ES RECORRER EL ARREGLO  DESDE LA POSICION 0, UNO POR  UNO
+EN CASO DE NO ENCUENTRE SE VULVE A LLAMAR EL METODO HASTA LLEGAR AL CASO BASE.
+**/
 public Trabajador buscarTrabajador(String identificador) {
     return buscarTrabajador(identificador, 0);
 }
@@ -93,17 +90,17 @@ private Trabajador buscarTrabajador(String identificador, int i) {
         return null;
     }
 
-    if (t[i] != null &&
+    if (t[i] != null && // CASO BASE
         t[i].getIdentificador().equals(identificador)) {
 
         return t[i];
     }
-
+// RECURSION
     return buscarTrabajador(identificador, i + 1);
 }
 
 
-    // Método administrarRecursos
+// METODO ADMINISTRAR RECURSOS
     public void administrarRecursos() {
 
         for (int i = 0; i < t.length; i++) {
@@ -120,7 +117,7 @@ private Trabajador buscarTrabajador(String identificador, int i) {
         }
     }
 
-    // Método generarReporte
+// METODO GENERAR REPORTE
     public void generarReporte() {
 
         for (int i = 0; i < t.length; i++) {
@@ -137,6 +134,7 @@ private Trabajador buscarTrabajador(String identificador, int i) {
         }
     }
 
+// METODO TOSTRING
     @Override
     public String toString() {
         return "PAS" +

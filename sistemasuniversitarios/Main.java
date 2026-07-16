@@ -1,25 +1,18 @@
-import java.time.LocalDate;
-import banco.*;
-import sistemasuniversitarios.*;
+package sistemasuniversitarios;
 
+import banco.CuentaCorriente;
+import banco.CuentaAhorro;
+import java.time.LocalDate;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // =========================
-        // UNIVERSIDAD
-        // =========================
-
         Universidad uni = new Universidad(
-                "Universidad Tecnologica",
+                "Universidad Tecnológica",
                 "Puebla",
                 1995
         );
-
-        // =========================
-        // DEPARTAMENTO
-        // =========================
 
         Departamento sistemas = new Departamento(
                 "Sistemas",
@@ -29,29 +22,40 @@ public class Main {
 
         uni.agregarDepartamento(sistemas);
 
-        // =========================
-        // PAS
-        // =========================
-
-        Pas administrativo = new Pas(
-                "Recursos Humanos",
-                2,
-                "Matutino",
+        Trabajador trabajador = new Trabajador(
                 LocalDate.of(2020, 1, 15),
                 12000,
-		"T001",
-                "Auxiliar",
-                "Carlos Lopez",
-                LocalDate.of(1985, 5, 10),
+                "T001",
+                "Administrador",
+                "Juan Pérez",
+                LocalDate.of(1985, 5, 20),
                 "Puebla"
         );
 
-        administrativo.administrarRecursos();
-        administrativo.generarReporte();
+        trabajador.agregarCuenta(
+                new CuentaCorriente("CC001", 5000)
+        );
 
-        // =========================
-        // PDI
-        // =========================
+        uni.contratarTrabajador(trabajador);
+
+        Doctor doctor = new Doctor(
+                "Ciencias Computacionales",
+                "UNAM",
+                2015,
+                LocalDate.of(2016, 2, 1),
+                30000,
+                "D001",
+                "Investigador",
+                "Roberto Díaz",
+                LocalDate.of(1978, 11, 4),
+                "Puebla"
+        );
+
+        doctor.agregarCuenta(
+                new CuentaCorriente("CC002", 8000)
+        );
+
+        uni.contratarTrabajador(doctor);
 
         Pdi profesor = new Pdi(
                 "Titular",
@@ -59,21 +63,20 @@ public class Main {
                 20,
                 LocalDate.of(2018, 8, 1),
                 25000,
-		"P001", 
+                "P001",
                 "Profesor Investigador",
-                "Ana Martinez",
+                "Ana Martínez",
                 LocalDate.of(1980, 3, 20),
                 "Puebla"
         );
 
-        profesor.investigar("Machine Learning");
-        profesor.impartirClase();
-
         sistemas.asignarProfesor(profesor);
 
-        // =========================
-        // ESTUDIANTE DE GRADO
-        // =========================
+        Pas administrativo = new Pas(
+                "Recursos Humanos",
+                2,
+                "Matutino"
+        );
 
         EstudianteGrado eg = new EstudianteGrado(
                 "Tesis",
@@ -82,68 +85,34 @@ public class Main {
                 "A001",
                 9.4,
                 LocalDate.of(2022, 8, 1),
-                "Maria Garcia",
+                "María García",
                 LocalDate.of(2004, 7, 15),
                 "Puebla"
         );
 
-        eg.inscribirMateria("Programacion Orientada a Objetos");
-
-        System.out.println(
-                "Beca: $" + eg.calcularBeca()
+        eg.agregarCuenta(
+                new CuentaAhorro("CA001", 10000, 15000)
         );
-
-        eg.realizarProyecto();
-        eg.solicitarTitulacion();
-
-        uni.registrarEstudiante(eg);
-
-        // =========================
-        // ESTUDIANTE DOCTORADO
-        // =========================
+	uni.registrarEstudiante(eg);
+        sistemas.agregarEstudiante(eg);
 
         EstudianteDoctorado ed = new EstudianteDoctorado(
-                "Doctorado en Computacion",
-                "Aplicaciones de IA en Educacion",
-                "Dr. Perez",
+                "Doctorado en Computación",
+                "IA en Educación",
+                "Dr. Pérez",
                 "D001",
                 9.8,
                 LocalDate.of(2024, 1, 10),
-                "Luis Hernandez",
+                "Luis Hernández",
                 LocalDate.of(1998, 2, 28),
                 "CDMX"
         );
 
-        ed.realizarTesis();
-        ed.publicarArticulo();
-
-        uni.registrarEstudiante(ed);
-
-        // =========================
-        // DOCTOR
-        // =========================
-
-        Doctor doctor = new Doctor(
-                "Ciencias Computacionales",
-                "UNAM",
-                2015,
-                LocalDate.of(2016, 2, 1),
-                30000,
-		"D001",
-                "Investigador",
-                "Roberto Diaz",
-                LocalDate.of(1978, 11, 4),
-                "Puebla"
+        ed.agregarCuenta(
+                new CuentaAhorro("CA002", 15000, 20000)
         );
 
-        doctor.validarTitulo();
-        doctor.registrarTitulo();
-
-        uni.contratarTrabajador(doctor);
-
-        // =========================
-        // MOSTRAR OBJETOS
-        // =========================
+        uni.registrarEstudiante(ed);
 
         System.out.println("\n===== UNIVERSIDAD =====");
         System.out.println(uni);
@@ -151,19 +120,38 @@ public class Main {
         System.out.println("\n===== DEPARTAMENTO =====");
         System.out.println(sistemas);
 
-        System.out.println("\n===== PAS =====");
-        System.out.println(administrativo);
-
-        System.out.println("\n===== PDI =====");
-        System.out.println(profesor);
-
-        System.out.println("\n===== ESTUDIANTE GRADO =====");
-        System.out.println(eg);
-
-        System.out.println("\n===== ESTUDIANTE DOCTORADO =====");
-        System.out.println(ed);
+        System.out.println("\n===== TRABAJADOR =====");
+        System.out.println(trabajador);
+        trabajador.mostrarCuentas();
 
         System.out.println("\n===== DOCTOR =====");
         System.out.println(doctor);
+        doctor.mostrarCuentas();
+
+        System.out.println("\n===== ESTUDIANTE GRADO =====");
+        System.out.println(eg);
+        eg.mostrarCuentas();
+
+        System.out.println("\n===== ESTUDIANTE DOCTORADO =====");
+        System.out.println(ed);
+        ed.mostrarCuentas();
+
+        sistemas.listarPersonal();
+        sistemas.listarEstudiantes();
+
+        profesor.investigar("Machine Learning");
+        profesor.impartirClase();
+
+        administrativo.administrarRecursos();
+        administrativo.generarReporte();
+
+        doctor.validarTitulo();
+        doctor.registrarTitulo();
+
+        eg.realizarProyecto();
+        eg.solicitarTitulacion();
+
+        ed.realizarTesis();
+        ed.publicarArticulo();
     }
 }

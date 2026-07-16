@@ -18,7 +18,7 @@ public class EstudianteDoctorado extends Estudiante {
                                String nombre,
                                LocalDate fechaNacimiento,
                                String direccion) {
-
+//VIENE DE ESTUDIANTE Y PERSONA
         super(matricula, promedio, fechaIngreso,
               nombre, fechaNacimiento, direccion);
 

@@ -4,7 +4,7 @@ import sistemasuniversitarios.Estudiante;
 import banco.CuentaCorriente;
 import banco.CuentaAhorro;
 
-public class Main {
+public class MainBanco {
 
     public static void main(String[] args) {
 

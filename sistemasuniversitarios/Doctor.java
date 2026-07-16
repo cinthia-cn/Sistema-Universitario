@@ -4,37 +4,34 @@ import java.time.LocalDate;
 
 public class Doctor extends Trabajador {
 
-// ATRIBUTOS
+//ATRIBUTOS
     private String especialidad;
     private String universidad;
     private int anioObtencion;
 
-// CONSTRUCTOR
+// CONSTRUCTOR CON PARAMETROS
     public Doctor(String especialidad,
                   String universidad,
                   int anioObtencion,
                   LocalDate fechaIngreso,
                   double salario,
-		  String identificador;
+                  String identificador,
                   String puesto,
                   String nombre,
                   LocalDate fechaNacimiento,
                   String direccion) {
 
-        super(fechaIngreso, salario,identificador, puesto,
-              nombre, fechaNacimiento, direccion);
+        super(fechaIngreso, salario, identificador, puesto,
+                nombre, fechaNacimiento, direccion); // VIENE DE PERSONA Y TRABAJADOR(CONSTRUCTORES)
 
         this.especialidad = especialidad;
         this.universidad = universidad;
         this.anioObtencion = anioObtencion;
     }
 
-// CONSTRUCTOR VACIO 
-
+// CONSTRUCTOR VACIO
     public Doctor() {
-
-        super();
-
+        super();// LLAMA A OTRO CONSTRUCTOR VACIO, DE TRABAJADOR
         this.especialidad = "";
         this.universidad = "";
         this.anioObtencion = 0;
@@ -53,7 +50,7 @@ public class Doctor extends Trabajador {
         return anioObtencion;
     }
 
-// SETTERS
+//SETTERS
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
@@ -68,48 +65,26 @@ public class Doctor extends Trabajador {
 
 // METODO VALIDAR TITULO
     public void validarTitulo() {
-
-        if(anioObtencion > 0) {
-
-            System.out.println(
-                "Titulo validado correctamente."
-            );
-
+        if (anioObtencion > 0) {
+            System.out.println("Título validado correctamente.");
         } else {
-
-            System.out.println(
-                "No existe informacion suficiente para validar el titulo."
-            );
+            System.out.println("No existe información suficiente para validar el título.");
         }
     }
-
 // METODO REGISTRAR TITULO
     public void registrarTitulo() {
-
-        System.out.println(
-            getNombre() +
-            " ha registrado su titulo de doctor."
-        );
-
-        System.out.println(
-            "Especialidad: " + especialidad
-        );
-
-        System.out.println(
-            "Universidad: " + universidad
-        );
-
-        System.out.println(
-            "Año de obtencion: " + anioObtencion
-        );
+        System.out.println(getNombre() + " ha registrado su título de doctor.");
+        System.out.println("Especialidad: " + especialidad);
+        System.out.println("Universidad: " + universidad);
+        System.out.println("Año de obtención: " + anioObtencion);
     }
 
+// METODO TOSTRING
     @Override
     public String toString() {
-
         return super.toString() +
-               "\nEspecialidad: " + especialidad +
-               "\nUniversidad: " + universidad +
-               "\nAño de obtencion: " + anioObtencion;
+                "\nEspecialidad: " + especialidad +
+                "\nUniversidad: " + universidad +
+                "\nAño de obtención: " + anioObtencion;
     }
 }

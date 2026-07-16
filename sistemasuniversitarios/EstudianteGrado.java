@@ -19,7 +19,7 @@ public class EstudianteGrado extends Estudiante {
                            String nombre,
                            LocalDate fechaNacimiento,
                            String direccion) {
-
+//VIENE DE ESTUDIANTE Y PERSONA
         super(matricula, promedio, fechaIngreso,
               nombre, fechaNacimiento, direccion);
 
@@ -74,8 +74,13 @@ public class EstudianteGrado extends Estudiante {
         );
     }
 
-// METODO SOLICITAR TITULACION 
-    public void solicitarTitulacion() {
+/** METODO SOLICITAR TITULACION 
+   ESTE METODO COMPARA CREDITOS SIENDO MAYOR O IGUAL A 300, SE PUEDE SEGUIR CON LA TITULACION
+  EN CASO DE QUE NO CUMPLA LA COMPARACION, NO SE PUEDE SEGUIR CON LE TRAMITE DE  TITULACION, PEROOO 
+SI NO TIENE EL SERVICIO SOCIAL, DICE QUE FALTA, Y  NO PODRA SEGUIR CON EL 
+TRAMITE DE TITULACION, AUNQUE TENGAS MAS O IGUAL DE 300 CREDITOS. Y SI TIENES MENOS DE 300 TE LO NOTIFICA
+**/
+ public void solicitarTitulacion() {
 
         if(servicioSocial && creditos >= 300) {
 

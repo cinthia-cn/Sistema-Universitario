@@ -17,7 +17,7 @@ public Pdi(String categoria,
            int horasDocencia,
            LocalDate fechaIngreso,
            double salario,
-	  String identificador;
+	  String identificador,
            String puesto,
            String nombre,
            LocalDate fechaNacimiento,
@@ -74,7 +74,7 @@ public int getHorasDocencia() {
 
 // AGREGAMOS BUSQUEDA RECURSIVA 
 // Buscando al trabajador dentro del arreglo 
-// Usamos el EQUALS
+// Usamos el EQUALS pq estamos comparando strings
 public Trabajador buscarTrabajador(String identificador) {
     return buscarTrabajador(identificador, 0);
 }
@@ -85,7 +85,7 @@ private Trabajador buscarTrabajador(String identificador, int i) {
         return null;
     }
 
-    if (t[i] != null &&
+    if (t[i] != null && // caso base
         t[i].getIdentificador().equals(identificador)) {
 
         return t[i];

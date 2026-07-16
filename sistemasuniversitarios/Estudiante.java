@@ -1,27 +1,24 @@
 package sistemasuniversitarios;
-import banco.CuentaAhorro;
 
+import banco.CuentaAhorro;
 import java.time.LocalDate;
 
-public class Estudiante extends Persona {
+public class Estudiante extends Persona {//EXTENDS ES HERENCIA
 
-// ATRIBUTOS
+/** ATRIBUTOS DE CUENTA AHORRO
+AQUI LO QUE HICE FUE AGREGAR UN MAXIMO DE CUENTAS, EN CASO DE QUE SE QUIERAN MAS POR ESTUDIANTE
+SE CAMBIA EL MAXXIMO DE CUENTAS. PQ? Pq lo que hacemos en una asociacion es que cadda estudiante puede tener
+mas de una cueta de ahorro**/
+    private static final int MAX_CUENTAS = 3;
+    private CuentaAhorro[] cuentas;
+    private int totalCuentas;
 
-// AQUI APLICAMOS LO MISMO QUE EN TRABAJADOR
-// DONDE UN ESTUDIANTE PUEDE TENER VARIAS CUENTAS DE AHORRO
-// POR LO TANTO CORREGI DE ASOSIACION A AGREGACION
-// Y AGREGAMOS ARREGLO A CUENTA DE AHORRO
-
-	private static final int MAX_CUENTAS = 3;
-	private CuentaAhorro[] cuentas;
-	private int totalCuentas;
-
+//Atributos de Estudiante
     private String matricula;
     private double promedio;
     private LocalDate fechaIngreso;
 
-// CONSTRUCTOR
-
+// CONSTRUCTOR CON PARAMETROS
     public Estudiante(String matricula,
                       double promedio,
                       LocalDate fechaIngreso,
@@ -29,27 +26,23 @@ public class Estudiante extends Persona {
                       LocalDate fechaNacimiento,
                       String direccion) {
 
-        super(nombre, fechaNacimiento, direccion);
+        super(nombre, fechaNacimiento, direccion); // HERENCIA DE PERSONA
 
         this.matricula = matricula;
         this.promedio = promedio;
         this.fechaIngreso = fechaIngreso;
-	
-	cuentas = new CuentaAhorro[MAX_CUENTAS];
-	totalCuentas = 0;
+
+        cuentas = new CuentaAhorro[MAX_CUENTAS];
     }
 
-// CONSTRUCTOR VACIO
+// COSNTRUCTOR VACIO
     public Estudiante() {
-
         super();
-
         this.matricula = "";
         this.promedio = 0;
         this.fechaIngreso = LocalDate.now();
-	
-	cuentas = new CuentaAhorro[MAX_CUENTAS];
-	totalCuentas = 0;
+
+        cuentas = new CuentaAhorro[MAX_CUENTAS];
     }
 
 // GETTERS
@@ -64,16 +57,16 @@ public class Estudiante extends Persona {
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
-    public  CuentaAhorro[] getCuentas(){
-	return cuentas;
-}
 
-   public int getTotalCuentas(){
-	return totalCuentas;
-}
+    public CuentaAhorro[] getCuentas() {
+        return cuentas;
+    }
 
-// SETTERS
+    public int getTotalCuentas() {
+        return totalCuentas;
+    }
 
+//SETTERS
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
@@ -85,83 +78,64 @@ public class Estudiante extends Persona {
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
-    
-// METODO DE CUENTA AHORRO CUENTAS
 
- public boolean agregarCuenta(CuentaAhorro cuenta) {
+/**
+METODO MOSTRAR CUENTA
+ESTE PRIMER METODO LO QUE HACE ES UNA COMPARACION SIMPLE DE == PARA VER SI EL NUMERO ES CUENTAS
+ES IGUAL A CERO EN CASO DE QUE SEA ASI, MUESTEA QUE NO HAY CUENTAS REGISTRADAS
+**/
+public void mostrarCuentas() {
+    if (totalCuentas == 0) {
+        System.out.println("No tiene cuentas registradas.");
+        return;
+    }
 
+/**
+EN CASO DE QUE SI HAYA CUENTAS, DEVUELVE EL CUANTAS
+PARA VER SI NUESTRO MAXIMO DE 3 ESTA LLENO O VACIO, PARA ESTO RECORRE EL ARREGLO UNO POR UNO
+**/
+
+    for (int i = 0; i < totalCuentas; i++) {
+        System.out.println(cuentas[i]);
+    }
+}
+
+/**
+CUANDO YA VERIFICO QUE SI NAY ESPACIOS, ESTE AGREGARA UNA CUENTA DE AHORRO NUEVA
+COMPARA  EL TOTAL. EN CASO DE ESPACIO, INCREMENTA SIN PASAR EL MAXIMO, CUANDO SE AGREGO LA CUENTA
+REGRESA UN TRUE, EN CASO CONTRARIO REGRESA UN FALSE, DE QUE NO SE PUEDO REGISTRAR LA CUENTA.
+**/
+
+    public boolean agregarCuenta(CuentaAhorro cuenta) {
         if (totalCuentas < MAX_CUENTAS) {
-
-            cuentas[totalCuentas] = cuenta;
-            totalCuentas++;
-
+            cuentas[totalCuentas++] = cuenta;
             return true;
         }
-
         return false;
     }
-  public CuentaAhorro buscarCuenta(String numeroCuenta) {
 
+/**
+EL METODO DE BUSCAR CUENTAS 
+ESTE LO QUE HACE ES BUSCAR UNA CUENTA, EN CASO DE QUE NO ESTE LA CUENTA O NO SE HAYA ENCONTRADO
+REGREAS UN NULL, PARA ESTO RECORRE TODO  EL ARREGLO UNO POR UNO, COMPARANDO DATO POR DATO
+QUE ES LO AUE HACE EL GETNUMERO .EQUALS, ES CASO DE QUE SEA LA CUENTA QUE BUSCAMOS
+REGRESA LA POSICION DE LA CUENTA, EN CASO CONTRARIO, TERMINA LA BUSQUEDA Y REGRESA UN NULL.
+**/
+    public CuentaAhorro buscarCuenta(String numeroCuenta) {
         for (int i = 0; i < totalCuentas; i++) {
-
-            if (cuentas[i].obtenerNumero().equals(numeroCuenta)) {
+            if (cuentas[i] != null && // CASO BASE
+                cuentas[i].getNumeroCuenta().equals(numeroCuenta)) {
                 return cuentas[i];
             }
-
         }
-
         return null;
     }
 
-    public void mostrarCuentas() {
-
-        if (totalCuentas == 0) {	
-	System.out.println("No tiene cuentas registradas.");
-            return;
-
-        }
-
-        for (int i = 0; i < totalCuentas; i++) {
-
-            System.out.println(cuentas[i]);
-
-        }
-
-    }
-
-// METODO INSCRIBIR MATERIAS
-    public void inscribirMateria(String materia) {
-
-        System.out.println(
-            getNombre() +
-            " se ha inscrito correctamente a la materia: " +
-            materia
-        );
-    }
-
-// METODO CALCULAR BECA
-    public double calcularBeca() {
-
-        if (promedio >= 9.0) {
-            return 3000;
-        }
-        else if (promedio >= 8.0) {
-            return 2000;
-        }
-        else {
-            return 1000;
-        }
-    }
-
-// METODO TO STRING
     @Override
     public String toString() {
-
-        return super.toString() + // Invoca a la version del metodo de persona. 
-				//sin el se pierde la informacion de persona
+        return super.toString() + //INVOCA EL STRING DE PERSONA
                 "\nMatricula: " + matricula +
                 "\nPromedio: " + promedio +
-                "\nFecha de ingreso: " + fechaIngreso + 
-		"\nTotal de cuentas: " + totalcuentas;
+                "\nFecha ingreso: " + fechaIngreso;
     }
 }
