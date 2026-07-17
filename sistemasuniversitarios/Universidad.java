@@ -26,14 +26,14 @@ y que pueden interactuar entre ellas**/
 // CONSTRUCTOR CON PARAMETROS
     public Universidad(String nombre,
                         String ciudad,
-                        int fundacion) {
+                        int fundacion, Estudiante listaEstudiante, Trabajador listaTrabajador) {
 
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.fundacion = fundacion;
 
-        estudiantes = new Estudiante[100];
-        trabajadores = new Trabajador[50];
+        estudiantes = listaEstudiantes;
+        trabajadores = listaTrabajador;  //AGREGACION
         departamentos = new Departamento[20];
 // En caso de que queramos mas espacios, se me cambia en nombre
     }
