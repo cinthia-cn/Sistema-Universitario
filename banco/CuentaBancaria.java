@@ -1,6 +1,6 @@
 package banco;
 
-public class CuentaBancaria implements Transaccionable {
+public class CuentaBancaria implements Transaccionable, Comparable<CuentaBancaria> {
 //IMPLEMENTS  ES DE INTERFAZ 
    
 //ATRIBUTO
@@ -47,6 +47,40 @@ POR LO TANTO SI TRABAJARA CON PRIVATE, ME LANZARIA UN ERROS DE PAQUETES.
     public void retirar(double monto) {
         if (monto > 0 && monto <= saldo) saldo -= monto;
     }// AQUI COMPARA EL TENER EL MONTO MAYOR O IGUAL AL QUE SE DESEA RETIRAR.
+
+
+/**
+ * COMPARA DOS CUENTAS BANCARIAS MEDIANTE SU NUMERO DE CUENTA.
+ * DEVUELVE:
+ * NEGATIVO SI ESTA CUENTA VA ANTES.
+ * CERO SI SON IGUALES.
+ * POSITIVO SI ESTA CUENTA VA DESPUES.
+ */
+@Override
+public int compareTo(CuentaBancaria otra) {
+    return this.numeroCuenta.compareTo(otra.numeroCuenta);
+}
+
+/**
+ * COMPARA SI DOS CUENTAS SON IGUALES.
+ * DOS CUENTAS SON IGUALES SI TIENEN EL MISMO NUMERO DE CUENTA.
+ */
+@Override
+public boolean equals(Object obj) {
+
+    if (this == obj) {
+        return true;
+    }
+
+    if (obj == null || getClass() != obj.getClass()) {
+        return false;
+    }
+
+    CuentaBancaria otra = (CuentaBancaria) obj;
+
+    return this.numeroCuenta.equals(otra.numeroCuenta);
+} 
+
 
 // METODO TOSTRING
     @Override

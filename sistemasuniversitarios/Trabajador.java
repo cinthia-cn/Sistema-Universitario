@@ -4,7 +4,7 @@ import banco.CuentaCorriente;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Trabajador extends Persona {
+public class Trabajador extends Persona implements Comparable<Trabajador> {
 
 //ATRIBUTOS
 /**
@@ -136,7 +136,7 @@ public void mostrarCuentas() {
     } //Aqui mete el nuevo numero de cuentas. o la posicion del arreglo
 }
 
-//METODO DE BUSCAR CUENTA
+//METODO DE BUSCAR CUENTA BUSQUEDA LINEAL
     public CuentaCorriente buscarCuenta(String numeroCuenta) {
         for (int i = 0; i < totalCuentas; i++) {
             if (cuentas[i] != null &&
@@ -146,6 +146,42 @@ public void mostrarCuentas() {
         }
         return null;
     }
+
+/**
+METODO DE COMPARETO
+COMPARA DOS TRABAJADORES MEDIANTE SU IDENTIFICADOR ASI REGRESA
+-1 SI ESTE VA ANTES
+0 SI SON IGUALES 
+1 SI VA DESPUES
+**/
+@Override
+public int compareTo(Trabajador otro){
+	return this.identificador.compareTo(otro.identificador);
+}
+
+/**
+METODO EQUALS
+COMPARA SI DOS TRABAJADORES SON IGUALES
+ESTOS SON IGUALES SI EL IDENTIFICADOR ES IGUAL
+**/
+
+@Override
+public boolean equals(Object obj){
+	if(this == obj){
+	  return true;
+	}
+	if (obj==null || getClass() != obj.getClass()){
+	  return false;
+	}
+	Trabajador otro = (Trabajador) obj;
+	return this.identificador.equals(otro.identificador);
+}
+//USE EL OBJECT POR QUE YA ESTA DEFINIDO EN LA CLASE ORIGINAL DE JAVA, DESPUES SE VERIFICA QUE SI SEA DEL TIPO OBJETO 
+//EN ESTE CASO TRABAJADOR ANTES DE COMPARARLO, YA EN EL COMPARE RECIBE QUE ES DE TIPO OBJETO 
+
+
+//USAMOS IDENTIFICADOR PQ ES UN ATRIBUTO QUE IDENTIFICA DE MANERA UNICA A LOS OBJETOS
+
 
 // METODO TOSTRING
     @Override

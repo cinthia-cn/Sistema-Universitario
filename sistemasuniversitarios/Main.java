@@ -153,5 +153,51 @@ public class Main {
 
         ed.realizarTesis();
         ed.publicarArticulo();
-    }
+
+
+System.out.println("\n===== PRUEBA DE EQUALS Y compareTo =====");
+
+// ---------- ESTUDIANTES ----------
+EstudianteGrado eg2 = new EstudianteGrado(
+        "Otro Proyecto",
+        300,
+        false,
+        "A001", // Misma matrícula que eg
+        8.0,
+        LocalDate.of(2023, 8, 1),
+        "María López",
+        LocalDate.of(2004, 7, 15),
+        "Puebla"
+);
+
+System.out.println("equals Estudiante: " + eg.equals(eg2));
+System.out.println("compareTo Estudiante: " + eg.compareTo(ed));
+
+
+// ---------- TRABAJADORES ----------
+Trabajador trabajador2 = new Trabajador(
+        LocalDate.of(2022, 1, 10),
+        15000,
+        "T001", // Mismo identificador que trabajador
+        "Auxiliar",
+        "Pedro Gómez",
+        LocalDate.of(1990, 6, 1),
+        "Puebla"
+);
+
+System.out.println("equals Trabajador: " + trabajador.equals(trabajador2));
+System.out.println("compareTo Trabajador: " + trabajador.compareTo(doctor));
+
+
+// ---------- CUENTAS ----------
+CuentaCorriente cuenta2 = new CuentaCorriente("CC002", 8000);
+
+System.out.println("equals Cuenta: "
+        + trabajador.buscarCuenta("CC001").equals(cuenta2));
+
+System.out.println("compareTo Cuenta: "
+        + trabajador.buscarCuenta("CC001").compareTo(cuenta2));
+
+
+  }
 }
